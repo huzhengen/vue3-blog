@@ -11,7 +11,8 @@
   "dependencies": {
     "element-plus": "^2.3.6",
     "sass": "^1.63.4",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
