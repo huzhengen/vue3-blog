@@ -1,30 +1,29 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup></script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <header class="no-login" id="header">
+    <h1>LET'S SHARE</h1>
+    <p>精品文章汇聚(如提交垃圾文章请勿展示在首页)</p>
+    <div class="btns">
+      <el-button>立即登录</el-button>
+      <el-button>注册账号</el-button>
+    </div>
+  </header>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style scoped lang="scss">
+header {
+  background-color: #149739;
+  text-align: center;
+  color: #fff;
+  padding: 50px 0;
+  h1 {
+  }
+  p {
+    margin-top: 20px;
+  }
+  .btns {
+    margin-top: 20px;
+  }
 }
 </style>
