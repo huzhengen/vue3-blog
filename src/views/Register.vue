@@ -15,7 +15,7 @@ const formLabelAlign = reactive({
 <template>
   <Header />
   <main id="register">
-    <div class="register">
+    <div class="registerAndLogin">
       <el-form
         :label-position="labelPosition"
         label-width="100px"
@@ -47,18 +47,4 @@ const formLabelAlign = reactive({
   <Footer />
 </template>
 
-<style scoped lang="scss">
-.register {
-  max-width: 460px;
-  margin: 0 auto;
-  padding: 30px 0 141px;
-  p {
-    text-align: center;
-    font-size: 13px;
-    padding-top: 30px;
-    a {
-      color: var(--main-color);
-    }
-  }
-}
-</style>
+<style scoped lang="scss" src="../assets/registerAndLogin.scss"></style>
