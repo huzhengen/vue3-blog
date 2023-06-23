@@ -1,14 +1,10 @@
+<script setup>
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
+</script>
+
 <template>
-  <header class="no-login" id="header">
-    <h1>LET'S SHARE</h1>
-    <p>精品文章汇聚(如提交垃圾文章请勿展示在首页)</p>
-    <div class="btns">
-      <router-link to="/login">
-        <el-button>立即登录</el-button>
-      </router-link>
-      <el-button>注册账号</el-button>
-    </div>
-  </header>
+  <Header />
   <main id="main">
     <div class="index">
       <section class="blog-posts">
@@ -42,25 +38,10 @@
       </section>
     </div>
   </main>
-  <footer>&copy; hukai.com 2023</footer>
+  <Footer />
 </template>
 
 <style scoped lang="scss">
-header {
-  background-color: #149739;
-  text-align: center;
-  color: #fff;
-  padding: 50px 0;
-  p {
-    margin-top: 20px;
-  }
-  .btns {
-    margin-top: 20px;
-    a:first-child {
-      margin-right: 10px;
-    }
-  }
-}
 main {
   .index {
     max-width: 1000px;
@@ -106,10 +87,5 @@ main {
       }
     }
   }
-}
-footer {
-  background-color: #d7d7d7;
-  text-align: center;
-  padding: 20px 0;
 }
 </style>

@@ -1,3 +1,6 @@
+:root {
+  --main-color: #149739;
+}
 * {
   margin: 0;
   padding: 0;
@@ -8,4 +11,5 @@ body {
 
 a {
   color: #333;
+  text-decoration: none;
 }
