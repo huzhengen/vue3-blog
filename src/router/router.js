@@ -4,6 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from "../views/Home.vue"
 import Login from "../views/Login.vue"
 import Register from '../views/Register.vue'
+import Blog from '../views/Blog.vue'
 /**
  * 2、配置路由映射关系
  */
@@ -20,6 +21,10 @@ const routes = [
     path: "/register",
     component: Register
   },
+  {
+    path: "/blog/:blogId",
+    component: Blog,
+  }
 ]
 // 3、创建一个路由的对象
 const router = createRouter({

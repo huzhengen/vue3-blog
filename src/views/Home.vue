@@ -1,6 +1,39 @@
 <script setup>
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
+import axios from 'axios'
+import { ref, onMounted } from 'vue'
+
+const blogs = ref([])
+const total = ref(0) // blog 总数量
+
+onMounted(() => {
+  getBlogs(1)
+})
+
+const getBlogs = (page = 1) => {
+  axios
+    .get(`//blog-server.hunger-valley.com/blog?page=${page}`)
+    .then(function (response) {
+      // handle success
+      if (response.data.status === 'ok') {
+        blogs.value = response.data.data
+        total.value = response.data.total
+      }
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error)
+    })
+    .finally(function () {
+      // always executed
+    })
+}
+
+// 点击页码
+const onCurrentChange = (page) => {
+  getBlogs(page)
+}
 </script>
 
 <template>
@@ -8,31 +41,32 @@ import Footer from '../components/Footer.vue'
   <main id="main">
     <div class="index">
       <section class="blog-posts">
-        <a href="" class="item" v-for="n in 10">
+        <router-link
+          :to="`/blog/${blog.id}`"
+          class="item"
+          v-for="blog in blogs"
+        >
           <figure class="avatar">
-            <img
-              src="https://avatars.dicebear.com/api/human/qq792304256.svg?mood[]=happy"
-              alt="qq792304256"
-            />
-            <figcaption>qq792304256</figcaption>
+            <img :src="blog.user.avatar" alt="blog.user.username" />
+            <figcaption>{{ blog.user.username }}</figcaption>
           </figure>
           <div class="article">
             <h3>
-              Axios入门指南：如何在JavaScript中使用它
-              <span>30天前</span>
+              {{ blog.title }}
+              <span>{{ blog.createdAt }}</span>
             </h3>
-            <p>
-              Axios是一个基于Promise的HTTP客户端，用于浏览器和Node.js中。它具有简洁、高效、易用的特点，可以帮助我们更好地发起HTTP请求。
-              Axios支持浏览器和Node.js两种环境，并且可以拦截请求和响应、自定义请求头、转换请求数据和响应数据等功能。
-            </p>
+            <p>{{ blog.description }}</p>
           </div>
-        </a>
+        </router-link>
         <div class="pagination">
           <el-pagination
             :page-size="20"
             :pager-count="11"
             layout="prev, pager, next"
-            :total="1000"
+            :total="total"
+            @prev-click="onPrevClick"
+            @next-click="onNextClick"
+            @current-change="onCurrentChange"
           />
         </div>
       </section>
@@ -50,12 +84,13 @@ main {
       margin-top: 30px;
       a.item {
         display: flex;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         text-decoration: none;
         margin-bottom: 30px;
         figure.avatar {
+          min-width: 100px;
           text-align: center;
-          margin-right: 30px;
+          margin-right: 5px;
           img {
             width: 60px;
             height: 60px;
@@ -77,6 +112,7 @@ main {
           p {
             font-size: 14px;
             line-height: 23px;
+            word-break: break-all;
           }
         }
       }
