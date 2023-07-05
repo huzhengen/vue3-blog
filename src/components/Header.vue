@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
-import router from '../router/router'
-import { ElMessage } from 'element-plus'
+import { request } from '../utils/request'
 
 const isShowMenu = ref(false)
 const isLogin = ref(false)
@@ -14,28 +12,19 @@ const hideMenu = () => {
   isShowMenu.value = false
 }
 
-// localStorage.setItem('token', response.data.token)
-axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
-
-axios
+request
   .get(`/api/auth`)
   .then(function (response) {
-    // handle success
     if (response.data.isLogin) {
       isLogin.value = true
     } else {
       isLogin.value = false
-      // ElMessage.error(response.data.msg)
-      // router.push('/login')
     }
   })
   .catch(function (error) {
-    // handle error
     console.log(error)
   })
-  .finally(function () {
-    // always executed
-  })
+  .finally(function (a) {})
 </script>
 
 <template>
@@ -97,8 +86,9 @@ header.login {
   background-color: var(--main-color);
   color: #fff;
   .wrapper {
-    width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;

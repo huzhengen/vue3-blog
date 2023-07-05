@@ -1,8 +1,8 @@
 <script setup>
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import axios from 'axios'
 import { ref, onMounted } from 'vue'
+import { request } from '../utils/request'
 
 const blogs = ref([])
 const total = ref(0) // blog 总数量
@@ -12,7 +12,7 @@ onMounted(() => {
 })
 
 const getBlogs = (page = 1) => {
-  axios
+  request
     .get(`/api/blog?page=${page}`)
     .then(function (response) {
       // handle success
