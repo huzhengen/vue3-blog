@@ -1,7 +1,11 @@
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios'
+import router from '../router/router'
+import { ElMessage } from 'element-plus'
 
 const isShowMenu = ref(false)
+const isLogin = ref(false)
 
 const showMenu = () => {
   isShowMenu.value = true
@@ -9,22 +13,33 @@ const showMenu = () => {
 const hideMenu = () => {
   isShowMenu.value = false
 }
+
+// localStorage.setItem('token', response.data.token)
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
+
+axios
+  .get(`/api/auth`)
+  .then(function (response) {
+    // handle success
+    if (response.data.isLogin) {
+      isLogin.value = true
+    } else {
+      isLogin.value = false
+      // ElMessage.error(response.data.msg)
+      // router.push('/login')
+    }
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error)
+  })
+  .finally(function () {
+    // always executed
+  })
 </script>
 
 <template>
-  <header class="no-login" id="header" v-if="false">
-    <h1>LET'S SHARE</h1>
-    <p>精品文章汇聚(如提交垃圾文章请勿展示在首页)</p>
-    <div class="btns">
-      <router-link to="/login">
-        <el-button>立即登录</el-button>
-      </router-link>
-      <router-link to="/register">
-        <el-button>注册账号</el-button>
-      </router-link>
-    </div>
-  </header>
-  <header class="login" id="header" v-else>
+  <header class="login" id="header" v-if="isLogin">
     <div class="wrapper">
       <h1>LET'S SHARE</h1>
       <div class="user">
@@ -42,6 +57,18 @@ const hideMenu = () => {
           </div>
         </div>
       </div>
+    </div>
+  </header>
+  <header class="no-login" id="header" v-else>
+    <h1>LET'S SHARE</h1>
+    <p>精品文章汇聚(如提交垃圾文章请勿展示在首页)</p>
+    <div class="btns">
+      <router-link to="/login">
+        <el-button>立即登录</el-button>
+      </router-link>
+      <router-link to="/register">
+        <el-button>注册账号</el-button>
+      </router-link>
     </div>
   </header>
 </template>

@@ -34,7 +34,7 @@ const register = async (formEl) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       axios
-        .post('//blog-server.hunger-valley.com/auth/register', {
+        .post('/api/auth/register', {
           username: formLabelAlign.username,
           password: formLabelAlign.password,
         })

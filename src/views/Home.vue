@@ -13,7 +13,7 @@ onMounted(() => {
 
 const getBlogs = (page = 1) => {
   axios
-    .get(`//blog-server.hunger-valley.com/blog?page=${page}`)
+    .get(`/api/blog?page=${page}`)
     .then(function (response) {
       // handle success
       if (response.data.status === 'ok') {
