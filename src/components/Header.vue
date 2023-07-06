@@ -35,7 +35,7 @@ const logout = () => {
 <template>
   <header class="login" id="header" v-if="isLogin">
     <div class="wrapper">
-      <h1>LET'S SHARE</h1>
+      <h1><router-link to="/">LET'S SHARE</router-link></h1>
       <div class="user">
         <router-link to="/new">
           <el-icon size="30"><Plus /></el-icon>
@@ -97,6 +97,11 @@ header.login {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    h1 {
+      a {
+        color: #fff;
+      }
+    }
     .user {
       display: flex;
       align-items: center;

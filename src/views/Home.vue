@@ -13,7 +13,7 @@ onMounted(() => {
 
 const getBlogs = (page = 1) => {
   request
-    .get(`/api/blog?page=${page}`)
+    .get(`/api/blog?page=${page}&atIndex=true`)
     .then(function (response) {
       // handle success
       if (response.data.status === 'ok') {
