@@ -25,6 +25,11 @@ request
     console.log(error)
   })
   .finally(function (a) {})
+
+const logout = () => {
+  localStorage.removeItem('token')
+  location.reload()
+}
 </script>
 
 <template>
@@ -42,7 +47,7 @@ request
           />
           <div class="menu" v-show="isShowMenu">
             <router-link to="/new">我的</router-link>
-            <router-link to="/new">注销</router-link>
+            <span @click="logout">注销</span>
           </div>
         </div>
       </div>
@@ -117,10 +122,12 @@ header.login {
         display: flex;
         flex-direction: column;
         text-align: center;
-        a {
+        a,
+        span {
           color: #333;
           font-size: 12px;
           padding: 5px 0;
+          cursor: pointer;
         }
       }
     }
