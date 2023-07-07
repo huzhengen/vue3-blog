@@ -1,11 +1,19 @@
 <template>
   <Header />
-  <img :src="blog.avatar" alt="" width="100" />
-  <h3>{{ blog.title }}</h3>
-  <p>用户：{{ blog.username }}</p>
-  <p>发布时间：{{ blog.createdAt }}</p>
-  <p>内容</p>
-  <div v-html="blog.content"></div>
+  <div class="blog">
+    <div class="blog-header">
+      <img :src="blog.avatar" alt="" width="60" />
+      <div class="info">
+        <h3>{{ blog.title }}</h3>
+        <p>
+          <router-link to="/">{{ blog.username }}</router-link>
+          <span>发布时间：{{ blog.createdAt }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="content" v-html="blog.content"></div>
+  </div>
+  <Footer />
 </template>
 
 <script setup>
@@ -64,6 +72,38 @@ request
   .finally(function () {})
 </script>
 
-<style>
+<style lang="scss">
 @import 'highlight.js/styles/mono-blue.css';
+.blog {
+  max-width: 1000px;
+  margin: 30px auto;
+  &-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+    img {
+      margin-right: 20px;
+    }
+
+    .info {
+      h3 {
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 13px;
+        a {
+          color: var(--main-color);
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+  .content {
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+  }
+}
 </style>

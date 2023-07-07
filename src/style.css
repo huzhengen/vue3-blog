@@ -1,12 +1,11 @@
 :root {
   --main-color: #149739;
 }
-* {
-  margin: 0;
-  padding: 0;
-}
+
 body {
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 a {

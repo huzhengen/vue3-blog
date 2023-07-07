@@ -75,6 +75,8 @@ header.no-login {
   padding: 50px 0;
   h1 {
     font-size: 46px;
+    margin: 0;
+    padding: 0;
   }
   p {
     margin-top: 30px;
