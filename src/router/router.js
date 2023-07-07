@@ -5,6 +5,8 @@ import Home from "../views/Home.vue"
 import Login from "../views/Login.vue"
 import Register from '../views/Register.vue'
 import Blog from '../views/Blog.vue'
+import Create from '../views/Create.vue'
+
 /**
  * 2、配置路由映射关系
  */
@@ -24,7 +26,11 @@ const routes = [
   {
     path: "/blog/:blogId",
     component: Blog,
-  }
+  },
+  {
+    path: "/create",
+    component: Create
+  },
 ]
 // 3、创建一个路由的对象
 const router = createRouter({

@@ -37,7 +37,7 @@ const logout = () => {
     <div class="wrapper">
       <h1><router-link to="/">LET'S SHARE</router-link></h1>
       <div class="user">
-        <router-link to="/new">
+        <router-link to="/create">
           <el-icon size="30"><Plus /></el-icon>
         </router-link>
         <div @mouseenter="showMenu" @mouseleave="hideMenu">
@@ -46,7 +46,7 @@ const logout = () => {
             alt=""
           />
           <div class="menu" v-show="isShowMenu">
-            <router-link to="/new">我的</router-link>
+            <router-link to="/my">我的</router-link>
             <span @click="logout">注销</span>
           </div>
         </div>
