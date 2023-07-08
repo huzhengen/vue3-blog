@@ -25,6 +25,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
+import { friendlyDate } from '../utils/friendlyDate'
 
 const route = useRoute()
 
@@ -44,7 +45,7 @@ request
       blog.title = data.title
       blog.avatar = data.user.avatar
       blog.username = data.user.username
-      blog.createdAt = data.createdAt
+      blog.createdAt = friendlyDate(data.createdAt)
       // blog.content = marked.parse(data.content)
       blog.content = data.content
     }
@@ -95,6 +96,9 @@ request
         a {
           color: var(--main-color);
           padding-right: 10px;
+        }
+        span {
+          color: #585757;
         }
       }
     }

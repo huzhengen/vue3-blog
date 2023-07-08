@@ -3,6 +3,7 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import { ref, onMounted } from 'vue'
 import { request } from '../utils/request'
+import { friendlyDate } from '../utils/friendlyDate'
 
 const blogs = ref([])
 const total = ref(0) // blog 总数量
@@ -53,7 +54,7 @@ const onCurrentChange = (page) => {
           <div class="article">
             <h3>
               {{ blog.title }}
-              <span>{{ blog.createdAt }}</span>
+              <span>{{ friendlyDate(blog.createdAt) }}</span>
             </h3>
             <p>{{ blog.description }}</p>
           </div>
