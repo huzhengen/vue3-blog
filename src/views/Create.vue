@@ -45,11 +45,9 @@ const blogData = reactive({
   content: '',
 })
 
-const atIndex = ref(true)
+const atIndex = ref(false)
 
 const submit = () => {
-  console.log('submit')
-
   request
     .post('/api/blog', {
       title: blogData.title,
@@ -58,7 +56,6 @@ const submit = () => {
       atIndex: atIndex.value,
     })
     .then((res) => {
-      console.log('res', res)
       if (res.data.status === 'ok') {
         router.push(`/blog/${res.data.data.id}`)
       } else {
