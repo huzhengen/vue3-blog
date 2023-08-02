@@ -3,7 +3,7 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import { ref, onMounted } from 'vue'
 import { request } from '../utils/request'
-import { friendlyDate } from '../utils/friendlyDate'
+import IndexPost from '../components/IndexPost.vue'
 
 const blogs = ref([])
 const total = ref(0) // blog 总数量
@@ -42,23 +42,7 @@ const onCurrentChange = (page) => {
   <main id="main">
     <div class="index">
       <section class="blog-posts">
-        <router-link
-          :to="`/blog/${blog.id}`"
-          class="item"
-          v-for="blog in blogs"
-        >
-          <figure class="avatar">
-            <img :src="blog.user.avatar" alt="blog.user.username" />
-            <figcaption>{{ blog.user.username }}</figcaption>
-          </figure>
-          <div class="article">
-            <h3>
-              {{ blog.title }}
-              <span>{{ friendlyDate(blog.createdAt) }}</span>
-            </h3>
-            <p>{{ blog.description }}</p>
-          </div>
-        </router-link>
+        <IndexPost v-for="blog in blogs" :blog="blog" />
         <div class="pagination">
           <el-pagination
             :page-size="20"
