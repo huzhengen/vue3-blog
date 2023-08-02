@@ -1,9 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import { request } from '../utils/request'
+import { useIsLoginStore } from '../store/store'
+import { storeToRefs } from 'pinia'
 
 const isShowMenu = ref(false)
-const isLogin = ref(false)
+const store = useIsLoginStore()
+const { isLogin } = storeToRefs(store)
+const { setIsLogin } = store
 
 const showMenu = () => {
   isShowMenu.value = true
@@ -16,9 +20,9 @@ request
   .get(`/api/auth`)
   .then(function (response) {
     if (response.data.isLogin) {
-      isLogin.value = true
+      setIsLogin(true)
     } else {
-      isLogin.value = false
+      setIsLogin(false)
     }
   })
   .catch(function (error) {
